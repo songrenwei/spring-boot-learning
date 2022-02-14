@@ -1,0 +1,17 @@
+server:
+  port: 8082
+
+logging:
+  file:
+    path: logs
+
+spring:
+  application:
+    name: provider
+  rabbitmq:
+    host: 106.14.119.197
+    port: 5672
+    virtual-host: /srw
+    username: srw
+    password: srw
+

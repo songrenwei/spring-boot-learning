@@ -1,0 +1,25 @@
+server:
+  port: 8082
+
+logging:
+  file:
+    path: D://project//logs
+
+spring:
+  application:
+    name: consumer
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    virtual-host: /srw
+    username: srw
+    password: srw
+    # 消息发送确认
+    publisher-confirm-type: correlated # 消息发送到交换器成功后确认
+    publisher-returns: true # 消息发送到队列失败后触发回调方法
+
+
+zookeeper:
+  connect-string: 127.0.0.1:2181 # ,127.0.0.1:2182,127.0.0.1:3181
+  timeout: 2000
+

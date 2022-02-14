@@ -1,0 +1,28 @@
+server:
+  port: 8083
+
+logging:
+  file:
+    path: D://project//logs
+
+spring:
+  application:
+    name: consumer
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    virtual-host: /srw
+    username: srw
+    password: srw
+    listener:
+      simple:
+        acknowledge-mode: manual
+        concurrency: 1
+        max-concurrency: 10
+        prefetch: 1
+        retry:
+          enabled: true
+
+zookeeper:
+  connect-string: 127.0.0.1:2181 # ,127.0.0.1:2182,127.0.0.1:3181
+  timeout: 2000

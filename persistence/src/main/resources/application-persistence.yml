@@ -1,0 +1,34 @@
+spring:
+  datasource:
+    druid:
+      filters: stat,wall
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      useGlobalDataSourceStat: true
+      pool-prepared-statements: true
+      max-open-prepared-statements: 20
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      validation-query: SELECT 1
+
+# mybatis-plus
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  typeAliasesPackage: com.srw.persistence.entity
+  global-config:
+    db-config:
+      id-type: auto
+      # 插入策略 忽略 null
+      insert-strategy: not_null
+      # 更新策略 忽略 null
+      update-strategy: not_null
+  configuration:
+    # 开启自动驼峰命名规则（camel case）映射,默认就是true
+    map-underscore-to-camel-case: true
+  # 处理枚举
+  type-enums-package: com.srw.**.enums
+
+
+

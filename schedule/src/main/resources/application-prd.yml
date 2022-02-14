@@ -1,0 +1,42 @@
+server:
+    port: 8181
+    servlet:
+        context-path: /
+spring:
+    application:
+        name: schedule
+    mail:
+        # 配置 smtp 服务器地址
+        host: smtp.qq.com
+        # 配置密码，注意不是真正的密码，而是刚刚申请到的授权码
+        password: soboxmfymabbdice
+        # 发送者邮箱
+        username: 2543076350@qq.com
+        # 端口号465或587
+        port: 587
+        # 默认的邮件编码为UTF-8
+        default-encoding: utf-8
+        properties:
+            mail:
+                smtp:
+                    socketFactoryClass: javax.net.ssl.SSLSocketFactory
+                #表示开启 DEBUG 模式，这样，邮件发送过程的日志会在控制台打印出来，方便排查错误
+                debug: true
+        protocol: smtp
+logging:
+    file:
+        path: logs
+forest:
+    logEnabled: false # 打开或关闭日志，默认为true
+xxl:
+    job:
+        accessToken: ''
+        admin:
+            addresses: http://106.14.119.197:8180/xxl-job-admin
+        executor:
+            address: ''
+            appname: xxl-job-executor
+            ip: ''
+            logpath: /data/applogs/xxl-job/jobhandler
+            logretentiondays: 30
+            port: 9999

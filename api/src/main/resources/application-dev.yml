@@ -1,0 +1,70 @@
+server:
+  port: 8081
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+
+spring:
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/srw?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=GMT%2B8
+      username: root
+      password: root_pwd
+      max-active: 20
+      initial-size: 10
+      max-wait: 60000
+      min-idle: 10
+  data:
+    mongodb:
+      host: localhost # mongodb的连接地址
+      port: 27017 # mongodb的连接端口号
+      database: srw # mongodb的连接的数据库
+  redis:
+    lettuce:
+      pool:
+        max-active: 8 # 连接池最大连接数
+        max-idle: 8 # 连接池最大空闲连接数
+        min-idle: 0 # 连接池最小空闲连接数
+        max-wait: -1ms # 连接池最大阻塞等待时间，负值表示没有限制
+    host: localhost
+    port: 6379
+  aop:
+    proxy-target-class: true # springBoot 2.X 默认cglib动态代理
+  devtools:
+    restart:
+      poll-interval: 2s
+      quiet-period: 1s
+  thymeleaf:
+    mode: HTML5
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+
+zookeeper:
+  connect-string: 127.0.0.1:2181 # ,127.0.0.1:2182,127.0.0.1:3181
+  timeout: 2000
+
+logging:
+  file:
+    path: D://project//logs
+
+auto:
+  cfg:
+    enabled: true  # 开启才生效
+    host: 127.0.0.1
+    port: 1111
+
+
+
+
+
+
+
+
