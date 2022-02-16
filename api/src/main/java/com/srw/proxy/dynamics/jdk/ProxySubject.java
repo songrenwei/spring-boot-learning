@@ -13,19 +13,19 @@ import java.lang.reflect.Proxy;
 public class ProxySubject {
 
     // 委托类
-    private Subject target;
+    private Subject subject;
 
-    public ProxySubject(Subject target) {
-        this.target = target;
+    public ProxySubject(Subject subject) {
+        this.subject = subject;
     }
 
     // 为目标对象生成代理对象
     public Object getProxySubject() {
-        return Proxy.newProxyInstance(target.getClass().getClassLoader(), target.getClass().getInterfaces(),
+        return Proxy.newProxyInstance(subject.getClass().getClassLoader(), subject.getClass().getInterfaces(),
                 (proxy, method, args) -> {
                     log.info("卖房前...");
                     // 执行目标对象方法
-                    method.invoke(target, args);
+                    method.invoke(subject, args);
                     log.info("卖房后...");
                     return null;
                 });

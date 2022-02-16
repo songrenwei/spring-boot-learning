@@ -10,16 +10,16 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class Proxy implements Subject {
 
-    private Subject realSubject;
+    private Subject subject;
 
-    public Proxy(Subject realSubject) {
-        this.realSubject = realSubject;
+    public Proxy(Subject subject) {
+        this.subject = subject;
     }
 
     @Override
     public void request() {
         log.info("卖房前。。。");
-        realSubject.request();
+        subject.request();
         log.info("卖房后。。。");
     }
 
