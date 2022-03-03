@@ -38,13 +38,17 @@ public class TokenService {
     }
 
     public String createOrUpdateToken(Long userId) {
-        String token = createToken(userId);
         String key = StringUtils.join(PREFIX, userId);
+        String cacheToken = redisUtils.getObject(key);
+        if (StringUtils.isNotBlank(cacheToken)) {
+            redisUtils.del(key);
+        }
+        String token = createToken(userId);
         redisUtils.setObject(key, token, TOKEN_TIME_OUT, TimeUnit.MILLISECONDS);
         return token;
     }
 
-    private String createToken(Long userId) {
+    public String createToken(Long userId) {
         Session session = new Session(userId);
         return JwtUtils.createJWT("appToken", JSONUtil.toJsonStr(session), TOKEN_TIME_OUT);
     }
@@ -68,8 +72,10 @@ public class TokenService {
                     throw new BusinessException("登录过期，请重新登陆！");
                 }
                 if (!token.equalsIgnoreCase(cacheToken)) {
-                    throw new BusinessException("您的账号已经在其他设备登录，请重新登录！");
+                    throw new BusinessException("存在异地登录，请重新登录！");
                 }
+                // 自动续期
+                this.createOrUpdateToken(session.getUserId());
             }
             return session;
         } catch (ExpiredJwtException | SignatureException ex) {

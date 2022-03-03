@@ -14,7 +14,7 @@ import java.util.Date;
 @Slf4j
 public class JwtUtils {
 
-    private static final String JWT_SECRET = "s1r2e3n4w5e6i";
+    private static final String JWT_SECRET = "1r2e3n4w5e6i";
 
     private static SecretKey generalKey() {
         byte[] encodedKey = Base64Utils.encode(JWT_SECRET.getBytes(StandardCharsets.UTF_8));
