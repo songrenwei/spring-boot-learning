@@ -55,16 +55,8 @@ logging:
   file:
     path: D://project//logs
 
-auto:
+srw:
   cfg:
-    enabled: true  # 开启才生效
+#    enabled: true  # 开启才生效
     host: 127.0.0.1
     port: 1111
-
-
-
-
-
-
-
-

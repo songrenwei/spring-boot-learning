@@ -1,21 +1,21 @@
 package com.srw;
 
-//import com.cfg.srw.autocfgspringbootstarter.bean.AutoCfg;
-
+import com.srw.autoconfigure.SrwClient;
 import com.srw.business.helper.ParamDigestHelper;
+import com.srw.common.enums.QueueEnum;
 import com.srw.persistence.entity.User;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import javax.annotation.Resource;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoField;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import static java.time.temporal.TemporalAdjusters.lastDayOfMonth;
 import static java.time.temporal.TemporalAdjusters.next;
@@ -23,13 +23,13 @@ import static java.time.temporal.TemporalAdjusters.next;
 @SpringBootTest
 class ApiApplicationTests {
 
-//    @Resource
-//    private AutoCfg autoCfg;
-//
-//    @Test
-//    void test() {
-//        System.out.println(autoCfg);
-//    }
+    @Resource
+    private SrwClient srwClient;
+
+    @Test
+    void test() {
+        System.out.println(srwClient);
+    }
 
     @Test
     void contextLoads() {
@@ -118,6 +118,23 @@ class ApiApplicationTests {
         user.setUsername("bb");
         System.out.println("print : " + user);
         return user;
+    }
+
+    @Test
+    public void test4() {
+        List<Integer> list = Arrays.asList(2,7,3,1,8);
+        List<Integer> list2 = list.stream().sorted(Comparator.comparingInt(v -> v)).collect(Collectors.toList());
+
+        System.out.println(list2);
+
+
+    }
+
+    @Test
+    public void test5() {
+        List<QueueEnum> list = new ArrayList<>();
+        list.add(null);
+        list.stream().forEach(queueEnum -> System.out.println(": "+queueEnum.getExchange()));
     }
 
 }
